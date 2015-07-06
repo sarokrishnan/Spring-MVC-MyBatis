@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/util
+        http://www.springframework.org/schema/util/spring-util-3.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
+    ">
+
+    <!-- ****************** MVC & SYSTEM SETUP Start ************************* -->
+    <!-- enable processing of annotations such as @Autowired and @Configuration -->
+
+
+    <context:annotation-config/>
+
+
+    <bean id="servicesPropertyConfigurer" class="org.springframework.context.support.PropertySourcesPlaceholderConfigurer">
+        <property name="locations">
+            <list>
+                <value>classpath:properties/system.properties</value>
+            </list>
+        </property>
+        <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    </bean>
+
+
+    <context:component-scan base-package="com.saro.challenge"></context:component-scan>
+
+    <mvc:resources mapping="/css/**" location="/WEB-INF/css/"/>
+    <mvc:resources mapping="/js/**" location="/WEB-INF/js/"/>
+    <mvc:resources mapping="/html/**" location="/WEB-INF/html/"/>
+    <mvc:resources mapping="/internal/**" location="/WEB-INF/internal/"/>
+    <mvc:resources mapping="/media/**" location="/WEB-INF/media/"/>
+    <mvc:annotation-driven />
+
+    <!-- ****************** MVC & SYSTEM SETUP End************************* -->
+
+    <bean id="applicationContextProvider" class="com.saro.challenge.util.SpringUtil" destroy-method="stopSpring"></bean>
+
+    <import resource="mybatis-context.xml"/>
+
+    <bean
+            class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix">
+            <value>/WEB-INF/jsp/</value>
+        </property>
+        <property name="suffix">
+            <value>.jsp</value>
+        </property>
+    </bean>
+</beans>
