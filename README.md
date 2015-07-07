@@ -11,7 +11,7 @@ This simple web application project built using Spring MVC, MyBatis, MySQL, Java
 1. Lists the avaialble assignee names from the DB in the web page using controller and bootstrap dropdown.
    http://localhost:9001/assignment/index#
 2. When the page loads it populate the bootstrap dropdown with the names using spring controller (note: not using rest)
-3. when a name is selected it makes a rest call using Jquery / Ajax is made with assignee id and get the response of ASSIGNMENT model back in JSON  format
+3. when a name is selected it makes a rest call using Jquery / Ajax with an assignee id and get the response of ASSIGNMENT model back in JSON  format
    and parse it in a bootstrap List Group using Handlebar js mechanism. (Refer : http://handlebarsjs.com/)
    a) When the rest service is been called it gets the value based on id, for example , http://localhost:9001/assignment/rest/filterby/id/4
 
